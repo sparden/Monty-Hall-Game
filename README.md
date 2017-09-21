@@ -49,6 +49,8 @@ The probability of winning a Goat after swapping = probability of chosing the Ca
 So the ratio of wins and losses should be close to 2. --((2/3)/1/3)-- <br />
 Now see the below screenshot from the game. The ratio is 2.2. <br />
 
+# Screenshot
+
 ![alt text](https://github.com/speedious/Monty-Hall-Game/blob/master/monty_hall/Monty_Hall_Game.png)
 
 
