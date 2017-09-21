@@ -8,7 +8,7 @@ Inspired from the movie [Twenty-One](https://en.wikipedia.org/wiki/21_(2008_film
 2.pygame
 
 
-![Alt text](/ Monty-Hall-Game/monty_hall/Monty_Hall_Game.png?raw=true "Monty_Hall")
+![alt text](https://github.com/speedious/Monty-Hall-Game/blob/master/monty_hall/Monty_Hall_Game.png)
 
 
 
