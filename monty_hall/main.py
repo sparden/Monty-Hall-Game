@@ -125,7 +125,9 @@ myfont = pygame.font.SysFont(None, 25)
 gameExit = False
 gameOver = False
 FPS = 60
-sleepTime = 0
+
+#Set the Delay to 0 If you don't want any lag in showing the changes
+sleepTime = 1
 numOfWins = numOfGames = numOfLosses = 0
 
 #-------Colors-------#
