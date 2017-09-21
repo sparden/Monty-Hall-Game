@@ -12,7 +12,7 @@ I decided to demonstrate it to the high-school students with the help of Game. <
 
 # Problem Description:
 
--There are three doors. All closed initially.
+-There are three doors. All closed initially. <br />
 -Out of the three doors, 2 contains Goats and remaining 1 contains a brand new Car. <br />
 -You are asked to choose one of the doors which you guess to have the Car. <br />
 -The host of the game knows the position of the Car so he opens one of the doors having Goat in it. <br />
@@ -40,7 +40,7 @@ I decided to demonstrate it to the high-school students with the help of Game. <
 
 In Case II, we see winning a Car or Goat depends solely on what we chose at the first attempt. <br />
 If you chose a Goat at the first attempt, You will get the Car. <br />
-If you chose a Car at the first attemp, you will get the Goat. <br />
+If you chose a Car at the first attempt, you will get the Goat. <br />
 
 Hence, <br />
 The probability of winning the Car after swapping = probability of chosing a Goat at the first attempt = 2/3 <br />
