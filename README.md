@@ -28,15 +28,15 @@ I decided to demonstrate it to the high-school students with the help of Game. <
 -Probability of getting a Goat: 2/3 and that of getting the Car is 1/3 <br />
 
 Case I: No swap <br />
-	The probabilities doesn't change, Car 1/3 and Goat 2/3. <br />
+	&emsp; The probabilities doesn't change, Car 1/3 and Goat 2/3. <br />
 
 Case II: Swap <br />
 	&emsp; Case II.1: <br />
-		If initially chosen door had a Goat inside it, Swapping your choice will give you a Car for sure <br />
-		because the host has already opened the door containing a Goat. <br />
-	Case II.1: <br />
-		If initially chosen door had the Car inside it, Swapping your choice will give you a Goat for sure <br />
-		because the host has already opened the door containing a Goat. <br />
+		&emsp; If initially chosen door had a Goat inside it, Swapping your choice will give you a Car for sure <br />
+		&emsp; because the host has already opened the door containing a Goat. <br />
+	&emsp; Case II.1: <br />
+		&emsp; If initially chosen door had the Car inside it, Swapping your choice will give you a Goat for sure <br />
+		&emsp; because the host has already opened the door containing a Goat. <br />
 
 In Case II, we see winning a Car or Goat depends solely on what we chose at the first attempt. <br />
 If you chose a Goat at the first attempt, You will get the Car. <br />
