@@ -31,7 +31,7 @@ Case I: No swap <br />
 	The probabilities doesn't change, Car 1/3 and Goat 2/3. <br />
 
 Case II: Swap <br />
-	Case II.1: <br />
+	&emsp; Case II.1: <br />
 		If initially chosen door had a Goat inside it, Swapping your choice will give you a Car for sure <br />
 		because the host has already opened the door containing a Goat. <br />
 	Case II.1: <br />
