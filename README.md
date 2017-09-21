@@ -4,8 +4,11 @@ Inspired from the movie [Twenty-One](https://en.wikipedia.org/wiki/21_(2008_film
 
 # Programming language and packages used:
 
-1.Python
+1.Python <br />
 2.pygame
+
+
+![Alt text](/ Monty-Hall-Game/monty_hall/Monty_Hall_Game.png?raw=true "Monty_Hall")
 
 
 
