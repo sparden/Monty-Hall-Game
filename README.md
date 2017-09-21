@@ -1,2 +1,5 @@
 # Monty-Hall-Game
-Demonstration and Testing of famous Monty Hall Problem using Python and Pygame.
+
+Inspired from the movie [Twenty-One](https://en.wikipedia.org/wiki/21_(2008_film)) where Monty-Hall problem was asked to the students of MIT, I decided to create a Game to demonstrate it to the students of high-school students.
+
+
