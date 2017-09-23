@@ -125,7 +125,7 @@ def validate(doorNumber):
 	if imageList[doorNumber] == openCarImage:
 		numOfWins += 1
 		showMessage('Hurray! You won a brand new Car', 1.8*x_message, y_message+540)
-		showMessage('Enter q to play again.', 1.8*x_message, 620)
+		showMessage('Enter q to play again.', 1.8*x_message, y_message+560)
 		# return
 	else:
 		numOfLosses += 1
