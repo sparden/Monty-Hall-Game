@@ -1,9 +1,11 @@
-# Author : Monu Kumar
-# Created on : 10th of sept, 2017
-
-# MIT License
-
-# Copyright (c) 2017 Monu Kumar
+# -*- coding: utf-8 -*-
+# @Author: Monu Kumar
+# @Date: 10-09-2017 
+# @Email: monu.speedious@gmail.com
+# @Institution: Indian Institute of Technology, Tirupati(IIT Tirupati) 
+# @Github username: @speedious
+# MIT License. You can find a copy of the License
+# @https://speedious.github.io/Personal-Website/
 
 
 
@@ -18,6 +20,58 @@ from datetime import datetime
 
 
 pygame.init()
+
+
+display_width = 1400
+display_height = 1300
+
+x_message = 0.2*display_width
+y_message = 60
+
+clock = pygame.time.Clock()
+random.seed(datetime.now())
+
+pygame.font.init() 
+myfont = pygame.font.SysFont(None, 25)
+
+gameExit = False
+gameOver = False
+FPS = 60
+
+#Set the Delay to 0 If you don't want any lag in showing the changes
+sleepTime = 1
+numOfWins = numOfGames = numOfLosses = 0
+
+#-------Colors-------#
+black = (0,0,0)
+white = (255,255,255)
+red = (255,0,0)
+#-------Colors-------#
+
+#-------Coordinates-------#
+x1 = (0.1*display_width)
+y1 = y2 = y3 = (0.2*display_height)
+x2 = (0.4*display_width)
+x3 = (0.7*display_width)
+#-------Coordinates-------#
+
+#----------------Images-----------------#
+door1Image = pygame.image.load('door1.jpg')
+door2Image = pygame.image.load('door2.jpg')
+door3Image = pygame.image.load('door3.jpg')
+openGoatImage = pygame.image.load('opengoat.jpg')
+openCarImage = pygame.image.load('opencar.jpg')
+#---------------------------------------#
+
+gameDisplay = pygame.display.set_mode((display_width,display_height), RESIZABLE)
+pygame.display.set_caption('Monty Hall problem')
+
+
+doorImageList = [door1Image, door2Image, door3Image]
+coordinates = [[x1,y1], [x2,y2], [x3,y3]]  
+possibleImageList = [openCarImage, openGoatImage]
+imageList = [0,1,2]
+
 
 
 def displayImage(x,y,currentImage):
@@ -117,59 +171,6 @@ def awardTheGuest(keyValue, doorNumber):
 	findRatio()
 	pygame.display.update()
 				
-
-
-
-display_width = 1400
-display_height = 1300
-
-x_message = 0.2*display_width
-y_message = 60
-
-clock = pygame.time.Clock()
-random.seed(datetime.now())
-
-pygame.font.init() 
-myfont = pygame.font.SysFont(None, 25)
-
-gameExit = False
-gameOver = False
-FPS = 60
-
-#Set the Delay to 0 If you don't want any lag in showing the changes
-sleepTime = 1
-numOfWins = numOfGames = numOfLosses = 0
-
-#-------Colors-------#
-black = (0,0,0)
-white = (255,255,255)
-red = (255,0,0)
-#-------Colors-------#
-
-#-------Coordinates-------#
-x1 = (0.1*display_width)
-y1 = y2 = y3 = (0.2*display_height)
-x2 = (0.4*display_width)
-x3 = (0.7*display_width)
-#-------Coordinates-------#
-
-#----------------Images-----------------#
-door1Image = pygame.image.load('door1.jpg')
-door2Image = pygame.image.load('door2.jpg')
-door3Image = pygame.image.load('door3.jpg')
-openGoatImage = pygame.image.load('opengoat.jpg')
-openCarImage = pygame.image.load('opencar.jpg')
-#---------------------------------------#
-
-gameDisplay = pygame.display.set_mode((display_width,display_height), RESIZABLE)
-pygame.display.set_caption('Monty Hall problem')
-
-
-doorImageList = [door1Image, door2Image, door3Image]
-coordinates = [[x1,y1], [x2,y2], [x3,y3]]  
-possibleImageList = [openCarImage, openGoatImage]
-imageList = [0,1,2]
-
 
 
 
