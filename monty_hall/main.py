@@ -1,3 +1,13 @@
+# Author : Monu Kumar
+# Created on : 10th of sept, 2017
+
+# MIT License
+
+# Copyright (c) 2017 Monu Kumar
+
+
+
+
 import pygame, sys
 from pygame.locals import *
 import random
