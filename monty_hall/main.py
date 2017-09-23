@@ -16,6 +16,7 @@ import random
 import time
 from time import sleep
 from datetime import datetime
+from os import path
 
 
 
@@ -24,6 +25,9 @@ pygame.init()
 
 display_width = 1400
 display_height = 1300
+
+# Folder path init
+images = path.join(path.dirname(__file__), 'images')
 
 x_message = 0.2*display_width
 y_message = 60
@@ -56,11 +60,11 @@ x3 = (0.7*display_width)
 #-------Coordinates-------#
 
 #----------------Images-----------------#
-door1Image = pygame.image.load('door1.jpg')
-door2Image = pygame.image.load('door2.jpg')
-door3Image = pygame.image.load('door3.jpg')
-openGoatImage = pygame.image.load('opengoat.jpg')
-openCarImage = pygame.image.load('opencar.jpg')
+door1Image = pygame.image.load(path.join(images + '/door1.jpg'))
+door2Image = pygame.image.load(path.join(images + '/door2.jpg'))
+door3Image = pygame.image.load(path.join(images + '/door3.jpg'))
+openGoatImage = pygame.image.load(path.join(images + '/opengoat.jpg'))
+openCarImage = pygame.image.load(path.join(images + '/opencar.jpg'))
 #---------------------------------------#
 
 gameDisplay = pygame.display.set_mode((display_width,display_height), RESIZABLE)
