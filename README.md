@@ -7,7 +7,7 @@ I decided to demonstrate it to the high-school students with the help of Game. <
 
 # Programming language and packages used:
 
-1.Python <br />
+1.Python 2.7<br />
 2.pygame
 
 # Problem Description:
