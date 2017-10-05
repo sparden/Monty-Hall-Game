@@ -1,14 +1,4 @@
-# -*- coding: utf-8 -*-
-# @Author: Monu Kumar
-# @Date: 10-09-2017 
-# @Email: monu.speedious@gmail.com
-# @Institution: Indian Institute of Technology, Tirupati(IIT Tirupati) 
-# @Github username: @speedious
-# MIT License. You can find a copy of the License
-# @https://speedious.github.io/Personal-Website/
-
-
-
+#!/usr/bin/python
 
 import pygame, sys
 from pygame.locals import *
@@ -21,54 +11,73 @@ from os import path
 
 
 pygame.init()
+pygame.mixer.init()
 
 
 display_width = 1400
 display_height = 1300
 
 # Folder path init
-images = path.join(path.dirname(__file__), 'images')
+media = path.join(path.dirname(__file__), 'media')
+
 
 x_message = 0.2*display_width
-y_message = 60
+y_message = 70
 
 clock = pygame.time.Clock()
 random.seed(datetime.now())
 
 pygame.font.init() 
-myfont = pygame.font.SysFont(None, 25)
+myfont = pygame.font.SysFont(None, 29)
+titlefont = pygame.font.SysFont(None, 50)
 
 gameExit = False
 gameOver = False
-FPS = 60
-
-#Set the Delay to 0 If you don't want any lag in showing the changes
+FPS = 100
+#set your own sleeptime to show effect slowly
 sleepTime = 1
 numOfWins = numOfGames = numOfLosses = 0
+numOfSwaps = 0
+numOfWinsBySwap = 0
 
 #-------Colors-------#
 black = (0,0,0)
 white = (255,255,255)
-red = (255,0,0)
+lime = (0,255,0) #lime
+yellow = (255,255,0) #yellow
 #-------Colors-------#
 
 #-------Coordinates-------#
-x1 = (0.1*display_width)
+x1 = (0.2*display_width)
 y1 = y2 = y3 = (0.2*display_height)
-x2 = (0.4*display_width)
+x2 = (0.45*display_width)
 x3 = (0.7*display_width)
 #-------Coordinates-------#
 
-#----------------Images-----------------#
-door1Image = pygame.image.load(path.join(images + '/door1.jpg'))
-door2Image = pygame.image.load(path.join(images + '/door2.jpg'))
-door3Image = pygame.image.load(path.join(images + '/door3.jpg'))
-openGoatImage = pygame.image.load(path.join(images + '/opengoat.jpg'))
-openCarImage = pygame.image.load(path.join(images + '/opencar.jpg'))
+#----------------Images and Sounds-----------------#
+door1Image = pygame.image.load(path.join(media + '/door1.jpg'))
+door2Image = pygame.image.load(path.join(media + '/door2.jpg'))
+door3Image = pygame.image.load(path.join(media + '/door3.jpg'))
+openGoatImage = pygame.image.load(path.join(media + '/opengoat.jpg'))
+openCarImage = pygame.image.load(path.join(media + '/opencar.jpg'))
+backgroundImage = pygame.image.load(path.join(media + '/background.jpg'))
+congoImage = pygame.image.load(path.join(media + '/congo.gif'))
+oopsImage = pygame.image.load(path.join(media + '/oops.png'))
+gameSound = path.join(media+'/gameSound.mp3')
+gameIcon = pygame.image.load(path.join(media + '/gameIcon.jpeg'))
 #---------------------------------------#
 
 gameDisplay = pygame.display.set_mode((display_width,display_height), RESIZABLE)
 pygame.display.set_caption('Monty Hall problem')
+pygame.display.set_icon(gameIcon)
+
+backgroundRect = backgroundImage.get_rect()
+# congoRect = congoImage.get_rect()
+# gameDisplay.blit(backgroundImage, backgroundRect)
+# pygame.display.update()
+
+# pygame.mixer.music.load('foo.mp3')
+# pygame.mixer.music.play(0)
 
 
 doorImageList = [door1Image, door2Image, door3Image]
@@ -78,11 +87,12 @@ imageList = [0,1,2]
 
 
 
+
 def displayImage(x,y,currentImage):
 	gameDisplay.blit(currentImage, (x,y))
 
 def showMessage(message, x, y):
-	textsurface = myfont.render(message, True, red)
+	textsurface = myfont.render(message, True, yellow)
 	gameDisplay.blit(textsurface,(x,y))
 
 def setImagesRandomly():
@@ -106,12 +116,13 @@ def revealImage(doorNumber):
 	displayImage(coordinates[doorNumber][0], coordinates[doorNumber][1], imageList[doorNumber])
 
 def findRatio():
-	global numOfLosses, numOfWins
-	if numOfLosses != 0:
-		showMessage('Ratio(Wins:Losses) = '+str(1.*numOfWins/numOfLosses), x_message+500, y_message+60)
+	global numOfLosses, numOfWins, numOfWinsBySwap, numOfSwaps
+	if numOfSwaps==0 or numOfWins==numOfWinsBySwap:
+		showMessage('Wins(With Swap):Wins(Without Swap) = Infinite', x_message+500, y_message+100)
 
 	else:
-		showMessage('Ratio(Wins:Losses) = Infinite(0 Losses)', x_message+500, y_message+60)
+		ratio = 1.0*(numOfWinsBySwap*(numOfGames - numOfSwaps))/(numOfSwaps*(numOfWins - numOfWinsBySwap))
+		showMessage('Wins(With Swap):Wins(Without Swap) = '+str(ratio), x_message+500, y_message+100)
 
 def displayGoat(keyValue):
 	randomList = random.sample(range(0, 3), 3)
@@ -124,17 +135,30 @@ def validate(doorNumber):
 	global numOfWins, numOfLosses, numOfGames
 	if imageList[doorNumber] == openCarImage:
 		numOfWins += 1
-		showMessage('Hurray! You won a brand new Car', 1.8*x_message, y_message+540)
-		showMessage('Enter q to play again.', 1.8*x_message, y_message+560)
-		# return
+		numOfGames += 1
+		displayImage(display_width/2.5, display_height/2.5, congoImage)
+		showMessage('Enter q to play again.', x_message, y_message+100)
+		return 1
 	else:
 		numOfLosses += 1
-		showMessage('Oops! You missed the brand new Car!', 1.8*x_message, y_message+540)
-		showMessage('Enter q to play again.', 1.8*x_message, y_message+560)
+		numOfGames += 1
+		displayImage(display_width/2.5, display_height/2.5, oopsImage)
+		showMessage('Enter q to play again.', x_message, y_message+100)
+		return 0
 
-	numOfGames += 1
+
+def displayDetails():
+	showMessage('Number of Games = '+str(numOfGames), x_message+500, y_message)
+	showMessage('Number of Wins = '+str(numOfWins), x_message+500, y_message+20)
+	showMessage('Number of Losses = '+str(numOfGames - numOfWins), x_message+500, y_message+40)
+	showMessage('With swap => Won '+str(numOfWinsBySwap) +' out of ' +str(numOfSwaps), x_message+500, y_message+60)
+	showMessage('Without swap => Won '+str(numOfWins- numOfWinsBySwap) +' out of ' +str(numOfGames - numOfSwaps), x_message+500, y_message+80)
+	findRatio()
+
+
 
 def awardTheGuest(keyValue, doorNumber):
+	global numOfSwaps, numOfWinsBySwap
 	gameOver = False
 	showMessage('Would you like to swap your choice[Y/N]:', x_message, y_message+60)
 	pygame.display.update()
@@ -152,13 +176,16 @@ def awardTheGuest(keyValue, doorNumber):
 					break
 
 				if event.key == pygame.K_y:
+					numOfSwaps += 1
 					showMessage('You chose to Swap.', x_message, y_message+80)
 					pygame.display.update()
 					for i in range(3):
 						if i not in [doorNumber, keyValue]:
 							time.sleep(sleepTime)
-							validate(i)
+							x = validate(i)
 							revealImage(i)
+							if(x == 1):
+								numOfWinsBySwap += 1
 							pygame.display.update()
 							gameOver = True
 							break
@@ -169,28 +196,26 @@ def awardTheGuest(keyValue, doorNumber):
 				quit()
 				break
 
-	showMessage('Number of Games = '+str(numOfGames), x_message+500, y_message)
-	showMessage('Number of Wins = '+str(numOfWins), x_message+500, y_message+20)
-	showMessage('Number of Losses = '+str(numOfLosses), x_message+500, y_message+40)
-	findRatio()
-	pygame.display.update()
 				
 
 
 
-
 def main():
+	pygame.mixer.music.load(gameSound)
+	pygame.mixer.music.play(-1) # If the loops is -1 then the music will repeat indefinitely.
 	while not gameExit:
 		gameOver = False
 		gameDisplay.fill(white)
+		gameDisplay.blit(backgroundImage, backgroundRect)
 		displayStartImages()
+		showMessage("Follow the Instructions Below:", x_message, y_message)
+		textsurface = titlefont.render('!--Welcome to Monty Hall Game--!', True, lime)
+		gameDisplay.blit(textsurface,(0.3*display_width,15))
+		showMessage("Press Key 1, 2 or 3 to Choose Corresponding Door:", x_message, y_message+20)
+		displayDetails()
 		pygame.display.update()
 		setImagesRandomly()
 		while not gameOver:
-			showMessage("Welcome to Monty Hall Problem:", x_message, y_message)
-			showMessage("Press Key 1, 2 or 3 to choose corresponding door:", x_message, y_message+20)
-			pygame.display.update()
-
 			for event in pygame.event.get():
 				if event.type == pygame.KEYDOWN:
 					if event.key == pygame.K_q:
@@ -198,7 +223,7 @@ def main():
 						break
 						
 					if event.key == pygame.K_1:
-						showMessage("you chose Door1!", x_message, y_message+40)
+						showMessage("You Chose Door1!", x_message, y_message+40)
 						pygame.display.update()
 						time.sleep(sleepTime)
 						revealedDoor = displayGoat(0)
@@ -206,10 +231,11 @@ def main():
 						pygame.display.update()
 						time.sleep(sleepTime)
 						awardTheGuest(0, revealedDoor)
+						
 			  
 
 					if event.key == pygame.K_2:
-						showMessage("you chose Door2!", x_message, y_message+40)
+						showMessage("You Chose Door2!", x_message, y_message+40)
 						pygame.display.update()
 						time.sleep(sleepTime)
 						revealedDoor = displayGoat(1)
@@ -217,10 +243,11 @@ def main():
 						pygame.display.update()
 						time.sleep(sleepTime)
 						awardTheGuest(1, revealedDoor)
+						
 				   
 
 					if event.key == pygame.K_3:
-						showMessage("you chose Door3!", x_message, y_message+40)
+						showMessage("You Chose Door3!", x_message, y_message+40)
 						pygame.display.update()
 						time.sleep(sleepTime)
 						revealedDoor = displayGoat(2)
@@ -228,6 +255,7 @@ def main():
 						pygame.display.update()
 						time.sleep(sleepTime)
 						awardTheGuest(2, revealedDoor)
+
 						
 
 
@@ -236,7 +264,8 @@ def main():
 					quit()
 					break
 
-		clock.tick(FPS)
+			
+			clock.tick(FPS)
 
 
 
