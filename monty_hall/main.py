@@ -35,7 +35,7 @@ gameExit = False
 gameOver = False
 FPS = 100
 #set your own sleeptime to show effect slowly
-sleepTime = 1
+sleepTime = 0
 numOfWins = numOfGames = numOfLosses = 0
 numOfSwaps = 0
 numOfWinsBySwap = 0
