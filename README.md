@@ -8,7 +8,12 @@ I decided to demonstrate it to the high-school students with the help of Game. <
 # Programming language and packages used:
 
 1.Python 2.7<br />
-2.pygame
+2.pygame<br />
+Note: if you have multiple version of python you can set alias for python to python2<br />
+example in ubuntu: alias python=python2
+
+# Usage:
+python main.py
 
 # Problem Description:
 
