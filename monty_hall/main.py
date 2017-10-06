@@ -67,6 +67,7 @@ gameSound = path.join(media+'/gameSound.mp3')
 gameIcon = pygame.image.load(path.join(media + '/gameIcon.jpeg'))
 startImage = pygame.image.load(path.join(media + '/startImage.jpeg'))
 promptImage = pygame.image.load(path.join(media + '/prompt.png'))
+chosenImage = pygame.image.load(path.join(media + '/chosen.jpg'))
 #---------------------------------------#
 
 gameDisplay = pygame.display.set_mode((display_width,display_height), RESIZABLE)
@@ -243,6 +244,7 @@ def main():
 						
 					if event.key == pygame.K_1:
 						showMessage("You Chose Door1!", x_message, y_message+40)
+						displayImage(coordinates[0][0],coordinates[0][1]+120,chosenImage)
 						pygame.display.update()
 						time.sleep(sleepTime)
 						revealedDoor = displayGoat(0)
@@ -255,6 +257,7 @@ def main():
 
 					if event.key == pygame.K_2:
 						showMessage("You Chose Door2!", x_message, y_message+40)
+						displayImage(coordinates[1][0],coordinates[1][1]+120,chosenImage)
 						pygame.display.update()
 						time.sleep(sleepTime)
 						revealedDoor = displayGoat(1)
@@ -267,6 +270,7 @@ def main():
 
 					if event.key == pygame.K_3:
 						showMessage("You Chose Door3!", x_message, y_message+40)
+						displayImage(coordinates[2][0],coordinates[2][1]+120,chosenImage)
 						pygame.display.update()
 						time.sleep(sleepTime)
 						revealedDoor = displayGoat(2)
@@ -287,8 +291,6 @@ def main():
 			clock.tick(FPS)
 
 
+
 if __name__ == "__main__":
 	main()
-
-# pygame.quit()
-# quit()

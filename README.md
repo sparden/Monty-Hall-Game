@@ -52,7 +52,7 @@ The probability of winning the Car after swapping = probability of chosing a Goa
 The probability of winning a Goat after swapping = probability of chosing the Car at the first attempt = 1/3 <br />
 
 So the ratio of wins and losses should be close to 2. --((2/3)/1/3)-- <br />
-Now see the below screenshot from the game. The ratio is ~1.85. <br />
+Now see the below screenshot from the game. The ratio is ~1.8. <br />
 
 # Screenshot
 
