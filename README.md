@@ -12,7 +12,7 @@ I decided to demonstrate it to the high-school students with the help of Game. <
 Note: if you have multiple version of python you can set alias for python to python2<br />
 example in ubuntu: alias python=python2
 
-# Usage:
+# Run the code:
 python main.py
 
 # Problem Description:
