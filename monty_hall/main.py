@@ -65,6 +65,8 @@ congoImage = pygame.image.load(path.join(media + '/congo.gif'))
 oopsImage = pygame.image.load(path.join(media + '/oops.png'))
 gameSound = path.join(media+'/gameSound.mp3')
 gameIcon = pygame.image.load(path.join(media + '/gameIcon.jpeg'))
+startImage = pygame.image.load(path.join(media + '/startImage.jpeg'))
+promptImage = pygame.image.load(path.join(media + '/prompt.png'))
 #---------------------------------------#
 
 gameDisplay = pygame.display.set_mode((display_width,display_height), RESIZABLE)
@@ -72,6 +74,7 @@ pygame.display.set_caption('Monty Hall problem')
 pygame.display.set_icon(gameIcon)
 
 backgroundRect = backgroundImage.get_rect()
+startImageRect = startImage.get_rect()
 # congoRect = congoImage.get_rect()
 # gameDisplay.blit(backgroundImage, backgroundRect)
 # pygame.display.update()
@@ -137,13 +140,13 @@ def validate(doorNumber):
 		numOfWins += 1
 		numOfGames += 1
 		displayImage(display_width/2.5, display_height/2.5, congoImage)
-		showMessage('Enter q to play again.', x_message, y_message+100)
+		showMessage('Enter q to update the score and play again.', x_message, y_message+100)
 		return 1
 	else:
 		numOfLosses += 1
 		numOfGames += 1
 		displayImage(display_width/2.5, display_height/2.5, oopsImage)
-		showMessage('Enter q to play again.', x_message, y_message+100)
+		showMessage('Enter q to update the score and play again.', x_message, y_message+100)
 		return 0
 
 
@@ -201,8 +204,24 @@ def awardTheGuest(keyValue, doorNumber):
 
 
 def main():
+	play = False
 	pygame.mixer.music.load(gameSound)
 	pygame.mixer.music.play(-1) # If the loops is -1 then the music will repeat indefinitely.
+	gameDisplay.blit(startImage, startImageRect)
+	displayImage(135, 50, promptImage)
+	pygame.display.update()
+	while not play:
+		for event in pygame.event.get():
+			if event.type == pygame.KEYDOWN:
+				if event.key == pygame.K_RETURN:
+					play = True
+					break
+
+			if event.type == pygame.QUIT:
+				pygame.quit()
+				quit()
+				break
+
 	while not gameExit:
 		gameOver = False
 		gameDisplay.fill(white)
