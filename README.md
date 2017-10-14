@@ -55,7 +55,7 @@ Now see the below screenshot from the game. The ratio is 1.8. <br />
 # Screenshot
 
 ![alt text](https://github.com/speedious/Monty-Hall-Game/blob/master/monty_hall/Monty_Hall_Game.png)
-
+![alt text](https://github.com/speedious/Monty-Hall-Game/blob/master/monty_hall/Monty_Hall_Game_Cover.png)
 
 
 
